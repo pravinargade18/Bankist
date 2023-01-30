@@ -43,4 +43,35 @@ btnScrollTo.addEventListener('click', () => {
 });
 
 
+// Tabbed Component 
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+// watch video for better understanding sec-13 -->vno 13 tabbed components
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab'); //it will give the closest parent having class operations__tab
+  console.log(clicked);
+
+  //Guard Clause
+  if (!clicked) return; //if we click on parts other than button on tabsContainer it gives null if we get null then return don't execute the other code
+
+  // first remove the active class on every tab and the add for clicked tab only
+  tabs.forEach(tab => {
+    tab.classList.remove('operations__tab--active');
+  });
+  tabsContent.forEach(content => {
+    content.classList.remove('operations__content--active');
+  });
+
+  clicked.classList.add('operations__tab--active');
+
+  // activate the content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+  console.log(clicked.dataset.tab);
+});
+
 
