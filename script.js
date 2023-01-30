@@ -9,7 +9,13 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');  //nodeList like array
 const btnScrollTo=document.querySelector('.btn--scroll-to');
 const section1=document.querySelector('#section--1');
+// Tabbed component 
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
+// hover effect 
+const nav = document.querySelector('.nav');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -45,9 +51,7 @@ btnScrollTo.addEventListener('click', () => {
 
 // Tabbed Component 
 
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
+
 
 // watch video for better understanding sec-13 -->vno 13 tabbed components
 tabsContainer.addEventListener('click', function (e) {
@@ -75,3 +79,22 @@ tabsContainer.addEventListener('click', function (e) {
 });
 
 
+const hoverHandler = function (e) {
+  //hence handler function can only take one argument
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(sib => {
+      if (sib != link) {
+        sib.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+  }
+};
+
+
+nav.addEventListener('mouseover', hoverHandler.bind(0.5));
+nav.addEventListener('mouseout', hoverHandler.bind(1));
